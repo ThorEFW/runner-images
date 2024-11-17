@@ -51,6 +51,12 @@ variable "client_secret" {
   sensitive = true
 }
 
+variable "client_jwt" {
+  type    = string
+  default = "${env("ARM_SP_ID_TOKEN")}"
+  sensitive = true
+}
+
 variable "image_version" {
   type    = string
   default = "dev"
@@ -125,6 +131,7 @@ source "azure-arm" "build_image" {
   subscription_id  = "${var.subscription_id}"
   client_id        = "${var.client_id}"
   client_secret    = "${var.client_secret}"
+  client_jwt       = "${var.client_jwt}"
   client_cert_path = "${var.client_cert_path}"
 
   // Base image
