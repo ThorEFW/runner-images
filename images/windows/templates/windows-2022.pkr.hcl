@@ -47,6 +47,12 @@ variable "client_secret" {
   sensitive = true
 }
 
+variable "client_jwt" {
+  type    = string
+  default = "${env("ARM_SP_ID_TOKEN")}"
+  sensitive = true
+}
+
 variable "helper_script_folder" {
   type    = string
   default = "C:\\Program Files\\WindowsPowerShell\\Modules\\"
@@ -154,6 +160,7 @@ source "azure-arm" "image" {
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
+  client_jwt                             = "${var.client_jwt}"
   communicator                           = "winrm"
   image_offer                            = "WindowsServer"
   image_publisher                        = "MicrosoftWindowsServer"

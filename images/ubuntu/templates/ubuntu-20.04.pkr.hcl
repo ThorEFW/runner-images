@@ -42,6 +42,12 @@ variable "client_secret" {
   sensitive = true
 }
 
+variable "client_jwt" {
+  type    = string
+  default = "${env("ARM_SP_ID_TOKEN")}"
+  sensitive = true
+}
+
 variable "dockerhub_login" {
   type    = string
   default = "${env("DOCKERHUB_LOGIN")}"
@@ -149,6 +155,7 @@ source "azure-arm" "build_image" {
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
+  client_jwt                             = "${var.client_jwt}"
   image_offer                            = "0001-com-ubuntu-server-focal"
   image_publisher                        = "canonical"
   image_sku                              = "20_04-lts"
